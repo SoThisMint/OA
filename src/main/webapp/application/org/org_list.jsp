@@ -22,7 +22,7 @@
 <body>
 <nav class="breadcrumb"><i class="Hui-iconfont">&#xe67f;</i> 首页 <span class="c-gray en">&gt;</span> 管理员管理 <span class="c-gray en">&gt;</span> 组织管理 <a class="btn btn-success radius r mr-20" style="line-height:1.6em;margin-top:3px" href="javascript:location.replace(location.href);" title="刷新" ><i class="Hui-iconfont">&#xe68f;</i></a></nav>
 <div class="pd-20">
-    <div class="cl pd-5 bg-1 bk-gray"> <span class="l"> <a href="javascript:;" onclick="datadel()" class="btn btn-danger radius"><i class="Hui-iconfont">&#xe6e2;</i> 批量删除</a> <a class="btn btn-primary radius" href="javascript:;" onclick="admin_role_add('添加组织','admin-role-add.html','800')"><i class="Hui-iconfont">&#xe600;</i> 添加组织</a> </span> <span class="r">共有数据：<strong>54</strong> 条</span> </div>
+    <div class="cl pd-5 bg-1 bk-gray"> <span class="l"> <a href="javascript:;" onclick="datadel()" class="btn btn-danger radius"><i class="Hui-iconfont">&#xe6e2;</i> 批量删除</a> <a class="btn btn-primary radius" href="javascript:;" onclick="admin_org_add('添加组织','application/org/admin-org-add.jsp','800')"><i class="Hui-iconfont">&#xe600;</i> 添加组织</a> </span> <span class="r">共有数据：<strong>54</strong> 条</span> </div>
     <table class="table table-border table-bordered table-hover table-bg">
         <thead>
         <tr>
@@ -46,7 +46,7 @@
                 <td>${sysOrg.orgName}</td>
                 <td>${sysOrg.orgParentName}</td>
                 <td>
-                    <fmt:formatDate value="${sysOrg.createTime}" pattern="yyyy-MM-dd HH:mm:ss"></fmt:formatDate>
+                    <fmt:formatDate value="${sysOrg.createTime}" pattern="yyyy-MM-dd HH:mm:ss" />
                 </td>
                 <td>${sysOrg.orgDesc}</td>
                 <td class="f-14"><a title="编辑" href="javascript:;" onclick="admin_role_edit('组织编辑','admin-role-add.html','1')" style="text-decoration:none"><i class="Hui-iconfont">&#xe6df;</i></a> <a title="删除" href="javascript:;" onclick="admin_role_del(this,'1')" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont">&#xe6e2;</i></a></td>
@@ -54,7 +54,7 @@
         </c:forEach>
         </tbody>
     </table>
-    <%@include file="../page.jsp"%>
+    <jsp:include page="/application/org/page.jsp" />
 </div>
 <script type="text/javascript" src="lib/jquery/1.9.1/jquery.min.js"></script>
 <script type="text/javascript" src="lib/layer/1.9.3/layer.js"></script>
@@ -63,7 +63,7 @@
 <script type="text/javascript" src="js/H-ui.admin.js"></script>
 <script type="text/javascript">
     /*管理员-组织-添加*/
-    function admin_role_add(title,url,w,h){
+    function admin_org_add(title,url,w,h){
         layer_show(title,url,w,h);
     }
     /*管理员-组织-编辑*/

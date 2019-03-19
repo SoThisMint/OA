@@ -53,12 +53,8 @@
       <if test="flag != null">
         FLAG,
       </if>
-      <if test="createTime != null">
         CREATE_TIME,
-      </if>
-      <if test="updateTime != null">
-        UPDATE_TIME,
-      </if>
+        UPDATE_TIME
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="orgId != null">
@@ -79,12 +75,7 @@
       <if test="flag != null">
         #{flag,jdbcType=BIT},
       </if>
-      <if test="createTime != null">
-        #{createTime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="updateTime != null">
-        #{updateTime,jdbcType=TIMESTAMP},
-      </if>
+      now(),now()
     </trim>
   </insert>
   <update id="updateByPrimaryKeySelective" parameterType="com.qf.oa.entity.SysOrg">
@@ -105,12 +96,7 @@
       <if test="flag != null">
         FLAG = #{flag,jdbcType=BIT},
       </if>
-      <if test="createTime != null">
-        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="updateTime != null">
-        UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
-      </if>
+        UPDATE_TIME = now()
     </set>
     where ORG_ID = #{orgId,jdbcType=BIGINT}
   </update>

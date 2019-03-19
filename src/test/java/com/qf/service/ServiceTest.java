@@ -70,7 +70,7 @@ public class ServiceTest {
 
     @Test
     public void getPage() {
-        PageInfo page = sysOrgService.getPage("2");
+        PageInfo page = sysOrgService.getPage(1, 5);
         System.out.println(page);
     }
 

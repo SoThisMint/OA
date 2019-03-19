@@ -1,11 +1,7 @@
 package com.qf.oa.service.impl;
 
-import com.github.pagehelper.PageHelper;
-import com.github.pagehelper.PageInfo;
 import com.qf.oa.dao.IBaseDao;
 import com.qf.oa.service.IBaseService;
-
-import java.util.List;
 
 /**
  * @author ：Tony
@@ -48,15 +44,4 @@ public abstract class BaseServiceImpl<T> implements IBaseService<T> {
         return getBaseDao().updateByPrimaryKey(t);
     }
 
-    @Override
-    public PageInfo getPage(String currentPage) {
-        int current = 1;
-        if (currentPage != null) {
-            current = Integer.parseInt(currentPage);
-        }
-        PageHelper.startPage(current, 5);
-        List<T> list = getBaseDao().getList();
-        PageInfo<T> pageInfo = new PageInfo<>(list);
-        return pageInfo;
-    }
 }

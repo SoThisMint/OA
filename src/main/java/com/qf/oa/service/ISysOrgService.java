@@ -1,6 +1,9 @@
 package com.qf.oa.service;
 
+import com.github.pagehelper.PageInfo;
 import com.qf.oa.entity.SysOrg;
+
+import java.util.List;
 
 /**
  * @author ：Tony
@@ -11,4 +14,7 @@ import com.qf.oa.entity.SysOrg;
  */
 public interface ISysOrgService extends IBaseService<SysOrg> {
 
+    PageInfo getPage(int pageNum, int pageSize);
+
+    List<SysOrg> getList();
 }

@@ -1,5 +1,6 @@
 package com.qf.oa.service;
 
+import com.github.pagehelper.Page;
 import com.github.pagehelper.PageInfo;
 
 /**
@@ -23,5 +24,4 @@ public interface IBaseService<T> {
 
     int updateByPrimaryKey(T t);
 
-    PageInfo getPage(String currentPage);
 }

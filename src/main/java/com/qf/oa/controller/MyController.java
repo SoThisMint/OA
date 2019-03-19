@@ -1,5 +1,6 @@
 package com.qf.oa.controller;
 
+import com.github.pagehelper.Page;
 import com.github.pagehelper.PageInfo;
 import com.qf.oa.service.ISysOrgService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,7 +23,10 @@ public class MyController {
 
     @RequestMapping("/page")
     @ResponseBody
-    public PageInfo page() {
-        return sysOrgService.getPage("1");
+    public PageInfo page(Page page) {
+        if (page != null) {
+            return sysOrgService.getPage(page.getPageNum(), page.getPageSize());
+        }
+        return sysOrgService.getPage(1, 5);
     }
 }
