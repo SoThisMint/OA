@@ -60,7 +60,8 @@ public class ServiceTest {
 
     @Test
     public void updateByPrimaryKeySelective() {
-        sysOrgService.updateByPrimaryKeySelective(new SysOrg(100L, 1L, "test", "test", null, null, new Date(), new Date()));
+        int res = sysOrgService.updateByPrimaryKeySelective(new SysOrg(100L, 1L, "深圳千锋", "亲的风格", "测试", false, null, null));
+        System.out.println(res);
     }
 
     @Test

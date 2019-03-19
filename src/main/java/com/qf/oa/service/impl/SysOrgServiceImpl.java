@@ -41,4 +41,9 @@ public class SysOrgServiceImpl extends BaseServiceImpl<SysOrg> implements ISysOr
     public List<SysOrg> getList() {
         return sysOrgMapper.getList();
     }
+
+    @Override
+    public SysOrg getById(Integer orgId) {
+        return sysOrgMapper.selectByPrimaryKey(orgId.longValue());
+    }
 }

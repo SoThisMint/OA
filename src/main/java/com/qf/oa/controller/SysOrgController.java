@@ -7,6 +7,7 @@ import com.qf.oa.service.ISysOrgService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -58,24 +59,31 @@ public class SysOrgController {
 
     @RequestMapping("/list")
     @ResponseBody
-    public List<SysOrg> list(){
+    public List<SysOrg> list() {
         List<SysOrg> list = sysOrgService.getList();
         return list;
     }
 
-    /**
-     * @param pageNum
-     * @param pageSize
-     * @return
-     */
-    @RequestMapping("/p/{pageNum}")
+    @RequestMapping("/toUpdate/{orgId}")
+    public String uoUpdate(@PathVariable Integer orgId, ModelMap map) {
+        SysOrg sysOrg = sysOrgService.getById(orgId);
+        map.put("sysOrg", sysOrg);
+        return "org/admin-org-edit";
+    }
+
+    @RequestMapping("/update")
     @ResponseBody
-    public PageInfo page2(@PathVariable Integer pageNum, Integer pageSize) {
-        if (pageSize == null) {
-            pageSize = 4;
+    public SysResult update(SysOrg sysOrg) {
+        SysResult sysResult = new SysResult();
+        int res = sysOrgService.updateByPrimaryKeySelective(sysOrg);
+        if (res > 0) {
+            sysResult.setResult(true);
+            sysResult.setData("修改成功！");
+        } else {
+            sysResult.setResult(false);
+            sysResult.setData("修改失败！");
         }
-        PageInfo pageInfo = sysOrgService.getPage(pageNum, pageSize);
-        return pageInfo;
+        return sysResult;
     }
 
 

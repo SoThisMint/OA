@@ -17,4 +17,6 @@ public interface ISysOrgService extends IBaseService<SysOrg> {
     PageInfo getPage(int pageNum, int pageSize);
 
     List<SysOrg> getList();
+
+    SysOrg getById(Integer orgId);
 }

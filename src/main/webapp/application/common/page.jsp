@@ -34,18 +34,17 @@
                 if (!first) {
                     location.href = "sysOrg/page/" + obj.curr + "?pageSize=" + obj.limit;
                     // alert("test")
-                 /**    $.ajax({
-                        url: "sysOrg/p/1",
-                        type: "POST",
-                        data: {"pageNum": obj.curr, "pageSize": obj.pageSize},
-                        success: function (result) {
-                            alert(1);
-                            <%--${page.pageInfo=result}--%>
-                        },
-                        error: function () {
-                            alert("error")
-                        }
-                    });  */
+                    // $.ajax({
+                    //     url: "sysOrg/p",
+                    //     type: "POST",
+                    //     data: {"pageNum": obj.curr, "pageSize": obj.pageSize},
+                    //     success: function (result) {
+                    //         // console.log(result)
+                    //     },
+                    //     error: function () {
+                    //         alert("error");
+                    //     }
+                    // });
                 }
             }
         });
