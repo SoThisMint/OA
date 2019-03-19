@@ -96,4 +96,18 @@ public class SysOrg {
                 ", updateTime=" + updateTime +
                 '}';
     }
+
+    public SysOrg(Long orgId, Long orgParentId, String orgParentName, String orgName, String orgDesc, Boolean flag, Date createTime, Date updateTime) {
+        this.orgId = orgId;
+        this.orgParentId = orgParentId;
+        this.orgParentName = orgParentName;
+        this.orgName = orgName;
+        this.orgDesc = orgDesc;
+        this.flag = flag;
+        this.createTime = createTime;
+        this.updateTime = updateTime;
+    }
+
+    public SysOrg() {
+    }
 }

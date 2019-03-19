@@ -12,8 +12,12 @@
 </head>
 <body>
 <a href="sysOrg/page/1">首页</a>
-<a href="sysOrg/page/${pageInfo.pages-1}">上一页</a>
-<a href="sysOrg/page/${pageInfo.pages+1}">下一页</a>
+<c:if test="${pageInfo.pageNum!=1}">
+    <a href="sysOrg/page/${pageInfo.pageNum-1}">上一页</a>
+</c:if>
+<c:if test="${pageInfo.pageNum!=pageInfo.pages}">
+    <a href="sysOrg/page/${pageInfo.pageNum+1}">下一页</a>
+</c:if>
 <a href="sysOrg/page/${pageInfo.pages}">尾页</a>
 </body>
 </html>

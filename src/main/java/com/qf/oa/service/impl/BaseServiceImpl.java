@@ -20,17 +20,17 @@ public abstract class BaseServiceImpl<T> implements IBaseService<T> {
 
     @Override
     public int deleteByPrimaryKey(Long orgId) {
-        return 0;
+        return getBaseDao().deleteByPrimaryKey(orgId);
     }
 
     @Override
     public int insert(T t) {
-        return 0;
+        return getBaseDao().insert(t);
     }
 
     @Override
     public int insertSelective(T t) {
-        return 0;
+        return getBaseDao().insertSelective(t);
     }
 
     @Override
@@ -40,21 +40,21 @@ public abstract class BaseServiceImpl<T> implements IBaseService<T> {
 
     @Override
     public int updateByPrimaryKeySelective(T t) {
-        return 0;
+        return getBaseDao().updateByPrimaryKeySelective(t);
     }
 
     @Override
     public int updateByPrimaryKey(T t) {
-        return 0;
+        return getBaseDao().updateByPrimaryKey(t);
     }
 
     @Override
     public PageInfo getPage(String currentPage) {
         int current = 1;
-        if(currentPage!=null){
+        if (currentPage != null) {
             current = Integer.parseInt(currentPage);
         }
-        PageHelper.startPage(current,2);
+        PageHelper.startPage(current, 5);
         List<T> list = getBaseDao().getList();
         PageInfo<T> pageInfo = new PageInfo<>(list);
         return pageInfo;
