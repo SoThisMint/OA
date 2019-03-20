@@ -877,9 +877,7 @@
     </collation>
     <table id="225" parent="11" name="sys_area"/>
     <table id="226" parent="11" name="sys_menu"/>
-    <table id="227" parent="11" name="sys_org">
-      <Comment> </Comment>
-    </table>
+    <table id="227" parent="11" name="sys_org"/>
     <table id="228" parent="11" name="sys_role"/>
     <table id="229" parent="11" name="sys_role_menu"/>
     <table id="230" parent="11" name="sys_role_user"/>

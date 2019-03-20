@@ -12,7 +12,7 @@ import java.util.List;
 public class Page {
     private Integer currentPage = 1;
 
-    private Integer pageSize = 10;
+    private Integer pageSize = 4;
 
     private Integer totalCount;
 

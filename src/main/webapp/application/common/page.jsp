@@ -32,19 +32,12 @@
             layout: ['count', 'prev', 'page', 'next', 'limit', 'refresh', 'skip'],
             jump: function (obj, first) {
                 if (!first) {
-                    location.href = "sysOrg/page/" + obj.curr + "?pageSize=" + obj.limit;
-                    // alert("test")
-                    // $.ajax({
-                    //     url: "sysOrg/p",
-                    //     type: "POST",
-                    //     data: {"pageNum": obj.curr, "pageSize": obj.pageSize},
-                    //     success: function (result) {
-                    //         // console.log(result)
-                    //     },
-                    //     error: function () {
-                    //         alert("error");
-                    //     }
-                    // });
+                    //location.href = "sysOrg/page/" + obj.curr + "?pageSize=" + obj.limit;
+                    $("#body").load("sysOrg/searchWithConditions?currentPage=" + obj.curr + "&pageSize=" + obj.limit, {
+                        "orgName": "${sysOrg.orgName}",
+                        "orgParentName": "${sysOrg.orgParentName}",
+                        "flag": "${sysOrg.flag}"
+                    });
                 }
             }
         });

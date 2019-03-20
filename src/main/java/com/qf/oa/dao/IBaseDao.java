@@ -1,5 +1,7 @@
 package com.qf.oa.dao;
 
+import com.qf.oa.entity.SysOrg;
+
 import java.util.List;
 
 /**
@@ -23,4 +25,12 @@ public interface IBaseDao<T> {
     int updateByPrimaryKey(T t);
 
     List<T> getList();
+
+    List<SysOrg> searchWithConditions(SysOrg sysOrg);
+
+    int checkByParentId(Long orgId);
+
+    int checkByParentIds(List<Long> ids);
+
+    int updateFlagByIds(List<Long> ids);
 }

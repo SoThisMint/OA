@@ -1,6 +1,7 @@
 package com.qf.oa.controller;
 
 import com.github.pagehelper.PageInfo;
+import com.qf.oa.common.Page;
 import com.qf.oa.common.SysResult;
 import com.qf.oa.entity.SysOrg;
 import com.qf.oa.service.ISysOrgService;
@@ -10,6 +11,7 @@ import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.List;
@@ -86,5 +88,25 @@ public class SysOrgController {
         return sysResult;
     }
 
+    @RequestMapping("/searchWithConditions")
+    public String searchWithConditions(SysOrg sysOrg, Model model, Page page) {
+        PageInfo pageInfo = sysOrgService.searchWithConditions(sysOrg, page);
+        model.addAttribute("pageInfo", pageInfo);
+        model.addAttribute("sysOrg", sysOrg);
+        return "org/org_list";
+    }
+
+    @RequestMapping("/delete")
+    @ResponseBody
+    public SysResult delete(Long orgId) {
+        return sysOrgService.checkAndDelete(orgId);
+
+    }
+
+    @RequestMapping("/batchDelete")
+    @ResponseBody
+    public SysResult batchDelete(@RequestParam List<Long> ids){
+        return sysOrgService.checkAndBatchDelete(ids);
+    }
 
 }
