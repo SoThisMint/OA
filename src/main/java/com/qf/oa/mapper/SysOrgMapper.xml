@@ -127,19 +127,23 @@
             <if test="orgName != null">
                 and ORG_NAME like concat('%',#{orgName},'%')
             </if>
+            <if test="flag == null">
+                and flag = 1
+            </if>
             <if test="flag != null">
                 and FLAG = #{flag,jdbcType=BIT}
             </if>
         </where>
     </select>
     <select id="checkByParentId" parameterType="Long" resultType="int">
-        select count(*) from sys_org where ORG_PARENT_ID = #{orgId}
+        select count(*) from sys_org where ORG_PARENT_ID = #{orgId} and FLAG = 1
     </select>
     <select id="checkByParentIds" parameterType="Long" resultType="int">
         select count(*) from sys_org where ORG_PARENT_ID in
         <foreach collection="list" item="id" open="(" close=")" separator=",">
             #{id}
         </foreach>
+        and FLAG = 1
     </select>
     <update id="updateFlagByIds" parameterType="Long">
         update sys_org set FLAG = 0 where ORG_ID in

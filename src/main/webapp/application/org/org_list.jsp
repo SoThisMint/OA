@@ -40,10 +40,7 @@
                     <option value="1" selected="selected">是</option>
                     <option value="0">否</option>
               </select>
-                <!--三元表达式加载flag的值-->
-                <script>
-                    $("#flag").val(${sysOrg.flag=="true"?1:0});
-                </script>
+
 			</span>
             </div>
         </div>
@@ -106,6 +103,9 @@
 <script type="text/javascript" src="js/H-ui.js"></script>
 <script type="text/javascript" src="js/H-ui.admin.js"></script>
 <script type="text/javascript">
+
+    $("#flag").val(${sysOrg.flag=="false"?0:1});
+
     /*管理员-组织-添加*/
     function admin_org_add(title, url, w, h) {
         layer_show(title, url, w, h);
