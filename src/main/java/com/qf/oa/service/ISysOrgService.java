@@ -14,9 +14,9 @@ import java.util.List;
  */
 public interface ISysOrgService extends IBaseService<SysOrg> {
 
-    PageInfo getPage(int pageNum, int pageSize);
+//    PageInfo getPage(int pageNum, int pageSize);
 
-    List<SysOrg> getList();
+//    List<SysOrg> getList();
 
-    SysOrg getById(Integer orgId);
+//    SysOrg getById(Integer orgId);
 }

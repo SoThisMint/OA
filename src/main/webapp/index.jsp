@@ -65,7 +65,7 @@
 <aside class="Hui-aside">
     <input runat="server" id="divScrollValue" type="hidden" value=""/>
     <div class="menu_dropdown bk_2">
-        <dl id="menu-article">
+     <!--   <dl id="menu-article">
             <dt><i class="Hui-iconfont">&#xe616;</i> 资讯管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
             <dd>
                 <ul>
@@ -80,14 +80,13 @@
                     <li><a _href="picture-list.html" href="javascript:void(0)">图片管理</a></li>
                 </ul>
             </dd>
-        </dl>
+        </dl> -->
         <dl id="menu-product">
-            <dt><i class="Hui-iconfont">&#xe620;</i> 产品管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
+            <dt><i class="Hui-iconfont">&#xe620;</i> 基础数据管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
             <dd>
                 <ul>
-                    <li><a _href="product-brand.html" href="javascript:void(0)">品牌管理</a></li>
-                    <li><a _href="product-category.html" href="javascript:void(0)">分类管理</a></li>
-                    <li><a _href="product-list.html" href="javascript:void(0)">产品管理</a></li>
+                    <li><a _href="sysOrg/searchWithConditions" href="javascript:void(0)">组织管理</a></li>
+                    <li><a _href="sysUser/searchWithConditions" href="javascript:void(0)">用户管理</a></li>
                 </ul>
             </dd>
         </dl>
@@ -100,7 +99,7 @@
                 </ul>
             </dd>
         </dl>-->
-        <dl id="menu-comments">
+        <!--<dl id="menu-comments">
             <dt><i class="Hui-iconfont">&#xe622;</i> 评论管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
             <dd>
                 <ul>
@@ -108,7 +107,7 @@
                     <li><a _href="feedback-list.html" href="javascript:void(0)">意见反馈</a></li>
                 </ul>
             </dd>
-        </dl>
+        </dl> -->
         <!--<dl id="menu-order">
             <dt><i class="Hui-iconfont">&#xe63a;</i> 财务管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
             <dd>
@@ -119,7 +118,7 @@
                 </ul>
             </dd>
         </dl>-->
-        <dl id="menu-member">
+  <!--     <dl id="menu-member">
             <dt><i class="Hui-iconfont">&#xe60d;</i> 会员管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
             <dd>
                 <ul>
@@ -132,19 +131,18 @@
                     <li><a _href="member-record-share.html" href="javascript:void(0)">分享记录</a></li>
                 </ul>
             </dd>
-        </dl>
+        </dl>    -->
         <dl id="menu-admin">
             <dt><i class="Hui-iconfont">&#xe62d;</i> 管理员管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
             <dd>
                 <ul>
-                    <li><a _href="sysOrg/page/1" href="javascript:void(0)">组织管理</a></li>
-                    <li><a _href="admin-role.html" href="javascript:void(0)">角色管理</a></li>
-                    <li><a _href="admin-permission.html" href="javascript:void(0)">权限管理</a></li>
-                    <li><a _href="admin-list.html" href="javascript:void(0)">管理员列表</a></li>
+                    <li><a _href="admin-role.html" href="javascript:void(0)">菜单管理</a></li>
+                    <li><a _href="admin-permission.html" href="javascript:void(0)">角色管理</a></li>
+                    <li><a _href="admin-list.html" href="javascript:void(0)">授权管理</a></li>
                 </ul>
             </dd>
         </dl>
-        <dl id="menu-tongji">
+<!--        <dl id="menu-tongji">
             <dt><i class="Hui-iconfont">&#xe61a;</i> 系统统计<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
             <dd>
                 <ul>
@@ -169,7 +167,7 @@
                     <li><a _href="system-log.html" href="javascript:void(0)">系统日志</a></li>
                 </ul>
             </dd>
-        </dl>
+        </dl>-->
     </div>
 </aside>
 <div class="dislpayArrow"><a class="pngfix" href="javascript:void(0);" onClick="displaynavbar(this)"></a></div>
@@ -188,7 +186,7 @@
     <div id="iframe_box" class="Hui-article">
         <div class="show_iframe">
             <div style="display:none" class="loading"></div>
-            <iframe scrolling="yes" frameborder="0" src="welcome.html"></iframe>
+            <iframe scrolling="yes" frameborder="0" src=""></iframe>
         </div>
     </div>
 </section>

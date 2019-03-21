@@ -4,6 +4,7 @@ import com.github.pagehelper.PageInfo;
 import com.qf.oa.common.Page;
 import com.qf.oa.common.SysResult;
 import com.qf.oa.entity.SysOrg;
+import com.qf.oa.entity.SysUser;
 
 import java.util.List;
 
@@ -28,9 +29,19 @@ public interface IBaseService<T> {
 
     int updateByPrimaryKey(T t);
 
-    PageInfo searchWithConditions(SysOrg sysOrg, Page page);
+    PageInfo<T> searchWithConditions(T t, Page page);
 
-    SysResult checkAndDelete(Long orgId);
+    SysResult checkAndDelete(Long id);
 
     SysResult checkAndBatchDelete(List<Long> ids);
+
+    PageInfo getPage(int pageNum, int pageSize);
+
+    List<T> getList();
+
+    T getById(Integer id);
+
+    SysResult update(T t);
+
+    SysResult add(T t);
 }

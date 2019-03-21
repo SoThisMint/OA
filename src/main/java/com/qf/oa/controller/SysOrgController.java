@@ -1,6 +1,7 @@
 package com.qf.oa.controller;
 
 import com.github.pagehelper.PageInfo;
+import com.google.gson.Gson;
 import com.qf.oa.common.Page;
 import com.qf.oa.common.SysResult;
 import com.qf.oa.entity.SysOrg;
@@ -14,7 +15,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * @author ：Tony
@@ -46,16 +49,7 @@ public class SysOrgController {
     @RequestMapping("/add")
     @ResponseBody
     public SysResult add(SysOrg sysOrg) {
-        SysResult sysResult = new SysResult();
-        int res = sysOrgService.insertSelective(sysOrg);
-        if (res > 0) {
-            sysResult.setResult(true);
-            sysResult.setData("添加成功！");
-        } else {
-            sysResult.setResult(false);
-            sysResult.setData("添加失败！");
-        }
-        return sysResult;
+        return sysOrgService.add(sysOrg);
     }
 
 
@@ -76,16 +70,7 @@ public class SysOrgController {
     @RequestMapping("/update")
     @ResponseBody
     public SysResult update(SysOrg sysOrg) {
-        SysResult sysResult = new SysResult();
-        int res = sysOrgService.updateByPrimaryKeySelective(sysOrg);
-        if (res > 0) {
-            sysResult.setResult(true);
-            sysResult.setData("修改成功！");
-        } else {
-            sysResult.setResult(false);
-            sysResult.setData("修改失败！");
-        }
-        return sysResult;
+        return sysOrgService.update(sysOrg);
     }
 
     @RequestMapping("/searchWithConditions")
@@ -93,6 +78,16 @@ public class SysOrgController {
         PageInfo pageInfo = sysOrgService.searchWithConditions(sysOrg, page);
         model.addAttribute("pageInfo", pageInfo);
         model.addAttribute("sysOrg", sysOrg);
+        model.addAttribute("url","sysOrg/searchWithConditions");
+
+        //传递json格式的条件给page使用
+        Gson gson = new Gson();
+        Map<String,Object> map = new HashMap<>();
+        map.put("orgName",sysOrg.getOrgName());
+        map.put("orgParentName",sysOrg.getOrgParentName());
+        map.put("flag",sysOrg.getFlag());
+        String json = gson.toJson(map);
+        model.addAttribute("params",json);
         return "org/org_list";
     }
 

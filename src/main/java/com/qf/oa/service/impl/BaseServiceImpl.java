@@ -1,7 +1,13 @@
 package com.qf.oa.service.impl;
 
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
+import com.qf.oa.common.Page;
+import com.qf.oa.common.SysResult;
 import com.qf.oa.dao.IBaseDao;
 import com.qf.oa.service.IBaseService;
+
+import java.util.List;
 
 /**
  * @author ：Tony
@@ -13,6 +19,24 @@ import com.qf.oa.service.IBaseService;
 public abstract class BaseServiceImpl<T> implements IBaseService<T> {
 
     public abstract IBaseDao<T> getBaseDao();
+
+    @Override
+    public PageInfo getPage(int pageNum, int pageSize) {
+        PageHelper.startPage(pageNum, pageSize);
+        List<T> list = getBaseDao().getList();
+        PageInfo<T> pageInfo = new PageInfo<>(list);
+        return pageInfo;
+    }
+
+    @Override
+    public List<T> getList() {
+        return getBaseDao().getList();
+    }
+
+    @Override
+    public T getById(Integer id) {
+        return getBaseDao().selectByPrimaryKey(id.longValue());
+    }
 
     @Override
     public int deleteByPrimaryKey(Long orgId) {
@@ -44,4 +68,69 @@ public abstract class BaseServiceImpl<T> implements IBaseService<T> {
         return getBaseDao().updateByPrimaryKey(t);
     }
 
+    @Override
+    public PageInfo searchWithConditions(T t, Page page) {
+        PageHelper.startPage(page.getCurrentPage(), page.getPageSize());
+        List<T> list = getBaseDao().searchWithConditions(t);
+        PageInfo<T> pageInfo = new PageInfo<>(list);
+        return pageInfo;
+    }
+
+    @Override
+    public SysResult update(T t) {
+        SysResult sysResult = new SysResult();
+        int res = getBaseDao().updateByPrimaryKeySelective(t);
+        if (res > 0) {
+            sysResult.setResult(true);
+            sysResult.setData("修改成功！");
+        } else {
+            sysResult.setResult(false);
+            sysResult.setData("修改失败！");
+        }
+        return sysResult;
+    }
+
+    @Override
+    public SysResult checkAndDelete(Long id) {
+        SysResult sysResult = new SysResult();
+        int res = getBaseDao().checkByParentId(id);
+        if (res == 0) {
+            sysResult.setResult(true);
+            sysResult.setData("删除成功！");
+            getBaseDao().updateFlagById(id);
+        } else {
+            sysResult.setResult(false);
+            sysResult.setData("删除失败，该目标含有子节点！");
+        }
+        return sysResult;
+    }
+
+    @Override
+    public SysResult checkAndBatchDelete(List<Long> ids) {
+        SysResult sysResult = new SysResult();
+        int count = getBaseDao().checkByParentIds(ids);
+        if (count == 0) {
+            sysResult.setResult(true);
+            sysResult.setData("删除成功！");
+            getBaseDao().updateFlagByIds(ids);
+        } else {
+            sysResult.setResult(false);
+            sysResult.setData("删除失败，目标含有子节点");
+        }
+        return sysResult;
+    }
+
+    @Override
+    public SysResult add(T t) {
+        SysResult sysResult = new SysResult();
+        int res = getBaseDao().insertSelective(t);
+        if (res > 0) {
+            sysResult.setResult(true);
+            sysResult.setData("添加成功！");
+        } else {
+            sysResult.setResult(false);
+            sysResult.setData("添加失败");
+        }
+        return sysResult;
+    }
 }

@@ -1,5 +1,6 @@
 package com.qf.oa.dao;
 
+import com.github.pagehelper.PageInfo;
 import com.qf.oa.entity.SysOrg;
 
 import java.util.List;
@@ -26,11 +27,19 @@ public interface IBaseDao<T> {
 
     List<T> getList();
 
-    List<SysOrg> searchWithConditions(SysOrg sysOrg);
+    List<T> searchWithConditions(T t);
 
-    int checkByParentId(Long orgId);
+    int checkByParentId(Long id);
+
+    int updateFlagById(Long id);
 
     int checkByParentIds(List<Long> ids);
 
     int updateFlagByIds(List<Long> ids);
+
+    PageInfo getPage(int pageNum, int pageSize);
+
+    T getById(Integer id);
+
+
 }

@@ -145,6 +145,9 @@
         </foreach>
         and FLAG = 1
     </select>
+    <update id="updateFlagById" parameterType="Long">
+        update sys_org set FLAG = 0 where ORG_ID = #{orgId}
+    </update>
     <update id="updateFlagByIds" parameterType="Long">
         update sys_org set FLAG = 0 where ORG_ID in
         <foreach collection="list" item="id" open="(" separator="," close=")">

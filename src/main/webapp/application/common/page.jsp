@@ -31,13 +31,20 @@
             groups: 5,
             layout: ['count', 'prev', 'page', 'next', 'limit', 'refresh', 'skip'],
             jump: function (obj, first) {
+                // obj包含了当前分页的所有参数
+                console.log(obj.curr);
+                console.log(obj.limit);
+                console.log("${param.bodyId}");
+                console.log(${params})
                 if (!first) {
                     //location.href = "sysOrg/page/" + obj.curr + "?pageSize=" + obj.limit;
-                    $("#body").load("sysOrg/searchWithConditions?currentPage=" + obj.curr + "&pageSize=" + obj.limit, {
-                        "orgName": "${sysOrg.orgName}",
-                        "orgParentName": "${sysOrg.orgParentName}",
-                        "flag": "${sysOrg.flag}"
-                    });
+                    <%--$("#body").load("sysOrg/searchWithConditions?currentPage=" + obj.curr + "&pageSize=" + obj.limit, {--%>
+                        <%--"orgName": "${sysOrg.orgName}",--%>
+                        <%--"orgParentName": "${sysOrg.orgParentName}",--%>
+                        <%--"flag": "${sysOrg.flag}"--%>
+                    <%--});--%>
+
+                    $("#${param.bodyId}").load("${url}?currentPage="+obj.curr+"&pageSize="+obj.limit,${params})
                 }
             }
         });
