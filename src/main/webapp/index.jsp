@@ -136,7 +136,7 @@
             <dt><i class="Hui-iconfont">&#xe62d;</i> 管理员管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
             <dd>
                 <ul>
-                    <li><a _href="admin-role.html" href="javascript:void(0)">菜单管理</a></li>
+                    <li><a _href="sysMenu/searchWithConditions" href="javascript:void(0)">菜单管理</a></li>
                     <li><a _href="admin-permission.html" href="javascript:void(0)">角色管理</a></li>
                     <li><a _href="admin-list.html" href="javascript:void(0)">授权管理</a></li>
                 </ul>

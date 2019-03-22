@@ -1,14 +1,11 @@
 package com.qf.oa.service.impl;
 
-import com.qf.oa.common.SysResult;
 import com.qf.oa.dao.IBaseDao;
 import com.qf.oa.entity.SysRole;
 import com.qf.oa.mapper.SysRoleMapper;
 import com.qf.oa.service.ISysRoleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import java.util.List;
 
 /**
  * @author ：Tony
@@ -28,8 +25,4 @@ public class SysRoleServiceImpl extends BaseServiceImpl<SysRole> implements ISys
         return sysRoleMapper;
     }
 
-    @Override
-    public SysResult checkAndBatchDelete(List<Long> ids) {
-        return null;
-    }
 }
