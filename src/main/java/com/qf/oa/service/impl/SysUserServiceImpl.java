@@ -1,5 +1,8 @@
 package com.qf.oa.service.impl;
 
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
+import com.qf.oa.common.Page;
 import com.qf.oa.common.SysResult;
 import com.qf.oa.dao.IBaseDao;
 import com.qf.oa.entity.SysUser;
@@ -44,5 +47,21 @@ public class SysUserServiceImpl extends BaseServiceImpl<SysUser> implements ISys
         sysResult.setResult(true);
         sysResult.setData("删除成功！");
         return sysResult;
+    }
+
+    @Override
+    public PageInfo<SysUser> queryAuthUserByRoleId(Long roleId, Page page) {
+        PageHelper.startPage(page.getCurrentPage(), page.getPageSize());
+        List<SysUser> list = sysUserMapper.queryAuthUserByRoleId(roleId);
+        PageInfo<SysUser> pageInfo = new PageInfo<>(list);
+        return pageInfo;
+    }
+
+    @Override
+    public PageInfo<SysUser> queryNoAuthUserByRoleId(Long roleId, String userName, Page page) {
+        PageHelper.startPage(page.getCurrentPage(),page.getPageSize());
+        List<SysUser> list = sysUserMapper.queryNoAuthUserByRoleId(roleId,userName);
+        PageInfo<SysUser> pageInfo = new PageInfo<>(list);
+        return pageInfo;
     }
 }

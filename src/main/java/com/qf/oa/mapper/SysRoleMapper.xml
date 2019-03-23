@@ -90,4 +90,32 @@
       CREATE_TIME = #{createTime,jdbcType=TIMESTAMP}
     where ROLE_ID = #{roleId,jdbcType=BIGINT}
   </update>
+  <select id="getList" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from sys_role where FLAG = 1
+  </select>
+  <insert id="batchAdd">
+    insert into sys_role_use(role_id,user_id) values(
+    <foreach collection="ids" item="id" separator=",">
+      (#{roleId},#{id})
+    </foreach>
+    )
+  </insert>
+  <!--批量给某个角色授权-->
+  <insert id="batchAddUserToRole">
+    insert into sys_role_user(ROLE_ID,USER_ID) values
+      <foreach collection="idList" item="id" separator=",">
+        (#{roleId},#{id})
+      </foreach>
+  </insert>
+  <delete id="delUserFormRole">
+    delete from sys_role_user where ROLE_ID = #{roleId} and USER_ID = #{userId}
+  </delete>
+  <insert id="batchAddMenuToRole">
+    insert into sys_role_menu(ROLE_ID,MENU_ID) values
+    <foreach collection="idList" item="id" separator=",">
+      (#{roleId},#{id})
+    </foreach>
+  </insert>
 </mapper>

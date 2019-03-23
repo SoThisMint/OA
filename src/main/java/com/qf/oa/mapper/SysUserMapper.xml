@@ -292,4 +292,17 @@
             #{id}
         </foreach>
     </update>
+    <select id="queryAuthUserByRoleId" parameterType="Long" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from sys_user where FLAG=1 and USER_ID in (select USER_ID from sys_role_user where ROLE_ID = #{roleId})
+    </select>
+    <select id="queryNoAuthUserByRoleId" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from sys_user where FLAG=1 and USER_ID not in (select USER_ID from sys_role_user where ROLE_ID = #{roleId})
+        <if test="userName!=null and userName!=''">
+            and USER_NAME like concat('%',#{userName},'%')
+        </if>
+    </select>
 </mapper>

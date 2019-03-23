@@ -173,4 +173,20 @@
             #{id}
         </foreach>
     </update>
+  <select id="queryAuthMenuByRoleId" parameterType="Long" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from sys_menu where IS_PUBLISH = 1 and MENU_ID in (select MENU_ID from sys_role_menu where ROLE_ID = #{roleId})
+  </select>
+  <select id="queryNoAuthMenuByRoleId" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from sys_menu where IS_PUBLISH = 1 and MENU_ID not in (select MENU_ID from sys_role_menu where ROLE_ID = #{roleId})
+    <if test="menuName!=null and menuName != ''">
+      and MENU_NAME like concat('%',#{menuName},'%')
+    </if>
+  </select>
+    <delete id="delUserFormMenu">
+        delete from sys_role_menu where ROLE_ID = #{roleId} and MENU_ID = #{menuId}
+    </delete>
 </mapper>
