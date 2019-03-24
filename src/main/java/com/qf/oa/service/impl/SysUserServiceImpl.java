@@ -32,24 +32,6 @@ public class SysUserServiceImpl extends BaseServiceImpl<SysUser> implements ISys
     }
 
     @Override
-    public SysResult checkAndDelete(Long id) {
-        SysResult sysResult = new SysResult();
-        int res = sysUserMapper.updateFlagById(id);
-        sysResult.setResult(true);
-        sysResult.setData("删除成功！");
-        return sysResult;
-    }
-
-    @Override
-    public SysResult checkAndBatchDelete(List<Long> ids) {
-        SysResult sysResult = new SysResult();
-        sysUserMapper.updateFlagByIds(ids);
-        sysResult.setResult(true);
-        sysResult.setData("删除成功！");
-        return sysResult;
-    }
-
-    @Override
     public PageInfo<SysUser> queryAuthUserByRoleId(Long roleId, Page page) {
         PageHelper.startPage(page.getCurrentPage(), page.getPageSize());
         List<SysUser> list = sysUserMapper.queryAuthUserByRoleId(roleId);

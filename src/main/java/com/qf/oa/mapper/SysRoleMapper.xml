@@ -42,9 +42,7 @@
       <if test="flag != null">
         FLAG,
       </if>
-      <if test="createTime != null">
         CREATE_TIME,
-      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="roleId != null">
@@ -59,9 +57,7 @@
       <if test="flag != null">
         #{flag,jdbcType=BIT},
       </if>
-      <if test="createTime != null">
-        #{createTime,jdbcType=TIMESTAMP},
-      </if>
+      now(),
     </trim>
   </insert>
   <update id="updateByPrimaryKeySelective" parameterType="com.qf.oa.entity.SysRole">
@@ -118,4 +114,29 @@
       (#{roleId},#{id})
     </foreach>
   </insert>
+  <select id="searchWithConditions" parameterType="sysRole" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from sys_role
+    <where>
+      <if test="roleName != null and roleName != ''">
+        and ROLE_NAME like concat('%',#{roleName},'%')
+      </if>
+      <if test="flag == null">
+        and flag = 1
+      </if>
+      <if test="flag != null">
+        and FLAG = #{flag}
+      </if>
+    </where>
+  </select>
+  <update id="updateFlagById" parameterType="Long">
+    update sys_role set FLAG = 0 where ROLE_ID = #{roleId}
+  </update>
+  <update id="updateFlagByIds" parameterType="Long">
+    update sys_role set FLAG = 0 where ROLE_ID in
+    <foreach collection="list" item="id" separator="," open="(" close=")">
+      #{id}
+    </foreach>
+  </update>
 </mapper>

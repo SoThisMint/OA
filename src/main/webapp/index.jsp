@@ -137,7 +137,7 @@
             <dd>
                 <ul>
                     <li><a _href="sysMenu/searchWithConditions" href="javascript:void(0)">菜单管理</a></li>
-                    <li><a _href="admin-permission.html" href="javascript:void(0)">角色管理</a></li>
+                    <li><a _href="sysRole/searchWithConditions" href="javascript:void(0)">角色管理</a></li>
                     <li><a _href="application/authorization/authorization.jsp" href="javascript:void(0)">授权管理</a></li>
                 </ul>
             </dd>

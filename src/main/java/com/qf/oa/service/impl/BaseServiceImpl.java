@@ -93,7 +93,14 @@ public abstract class BaseServiceImpl<T> implements IBaseService<T> {
     @Override
     public SysResult checkAndDelete(Long id) {
         SysResult sysResult = new SysResult();
-        int res = getBaseDao().checkByParentId(id);
+        int res = 0;
+        try {
+            res = getBaseDao().checkByParentId(id);
+        } catch (Exception e) {
+            sysResult.setResult(true);
+            sysResult.setData("删除成功！");
+            getBaseDao().updateFlagById(id);
+        }
         if (res == 0) {
             sysResult.setResult(true);
             sysResult.setData("删除成功！");
@@ -108,7 +115,14 @@ public abstract class BaseServiceImpl<T> implements IBaseService<T> {
     @Override
     public SysResult checkAndBatchDelete(List<Long> ids) {
         SysResult sysResult = new SysResult();
-        int count = getBaseDao().checkByParentIds(ids);
+        int count = 0;
+        try {
+            count = getBaseDao().checkByParentIds(ids);
+        } catch (Exception e) {
+            sysResult.setResult(true);
+            sysResult.setData("删除成功！");
+            getBaseDao().updateFlagByIds(ids);
+        }
         if (count == 0) {
             sysResult.setResult(true);
             sysResult.setData("删除成功！");
