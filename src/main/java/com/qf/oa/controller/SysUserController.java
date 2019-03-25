@@ -4,6 +4,7 @@ import com.github.pagehelper.PageInfo;
 import com.google.gson.Gson;
 import com.qf.oa.common.Page;
 import com.qf.oa.common.SysResult;
+import com.qf.oa.entity.SysMenu;
 import com.qf.oa.entity.SysUser;
 import com.qf.oa.service.ISysUserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.servlet.http.HttpSession;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -69,13 +71,29 @@ public class SysUserController {
 
     @RequestMapping("/delete")
     @ResponseBody
-    public SysResult delete(Long userId){
+    public SysResult delete(Long userId) {
         return sysUserService.checkAndDelete(userId);
     }
 
     @RequestMapping("/batchDelete")
     @ResponseBody
-    public SysResult batchDelete(@RequestParam List<Long> ids){
+    public SysResult batchDelete(@RequestParam List<Long> ids) {
         return sysUserService.checkAndBatchDelete(ids);
+    }
+
+    @RequestMapping("/checkLogin")
+    public String checkLogin(SysUser sysUser, String online, Model model, HttpSession session) {
+        SysUser currentUser = sysUserService.getUserByUserName(sysUser);
+        System.out.println(online);
+        if (currentUser == null) {
+            return "login";
+        }
+        //登录成功
+        List<SysMenu> menuList = sysUserService.getMenuListByUserId(currentUser.getUserId());
+        if (true) {
+            session.setAttribute("currentUser", currentUser);
+        }
+        model.addAttribute("menuList", menuList);
+        return "index";
     }
 }

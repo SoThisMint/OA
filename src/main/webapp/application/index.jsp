@@ -6,15 +6,16 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
     <title>Title</title>
     <base href="<%=request.getContextPath()+"/"%>" />
-    <link href="css/H-ui.min.css" rel="stylesheet" type="text/css"/>
-    <link href="css/H-ui.admin.css" rel="stylesheet" type="text/css"/>
-    <link href="skin/default/skin.css" rel="stylesheet" type="text/css" id="skin"/>
-    <link href="lib/Hui-iconfont/1.0.1/iconfont.css" rel="stylesheet" type="text/css"/>
-    <link href="css/style.css" rel="stylesheet" type="text/css"/>
+    <link href="../css/H-ui.min.css" rel="stylesheet" type="text/css"/>
+    <link href="../css/H-ui.admin.css" rel="stylesheet" type="text/css"/>
+    <link href="../skin/default/skin.css" rel="stylesheet" type="text/css" id="skin"/>
+    <link href="../lib/Hui-iconfont/1.0.1/iconfont.css" rel="stylesheet" type="text/css"/>
+    <link href="../css/style.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
 <header class="Hui-header cl"><a class="Hui-logo l" title="H-ui.admin v2.3" href="/">H-ui.admin</a> <a
@@ -81,15 +82,22 @@
                 </ul>
             </dd>
         </dl> -->
-        <dl id="menu-product">
-            <dt><i class="Hui-iconfont">&#xe620;</i> 基础数据管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
-            <dd>
-                <ul>
-                    <li><a _href="sysOrg/searchWithConditions" href="javascript:void(0)">组织管理</a></li>
-                    <li><a _href="sysUser/searchWithConditions" href="javascript:void(0)">用户管理</a></li>
-                </ul>
-            </dd>
-        </dl>
+        <c:forEach items="${menuList}" var="menu1">
+            <dl id="menu-product">
+                <c:if test="${menu1.menuType==1}">
+                    <dt><i class="Hui-iconfont">&#xe62d;</i>${menu1.menuName}<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
+                </c:if>
+                <dd>
+                    <ul>
+                        <c:forEach items="${menuList}" var="menu2">
+                            <c:if test="${menu2.menuType==2&&menu2.menuParentId==menu1.menuId}">
+                                <li><a _href="${menu2.menuPath}" href="javascript:void(0)">${menu2.menuName}</a></li>
+                            </c:if>
+                        </c:forEach>
+                    </ul>
+                </dd>
+            </dl>
+        </c:forEach>
         <!--<dl id="menu-page">
             <dt><i class="Hui-iconfont">&#xe626;</i> 页面管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
             <dd>
@@ -132,16 +140,16 @@
                 </ul>
             </dd>
         </dl>    -->
-        <dl id="menu-admin">
-            <dt><i class="Hui-iconfont">&#xe62d;</i> 管理员管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
-            <dd>
-                <ul>
-                    <li><a _href="sysMenu/searchWithConditions" href="javascript:void(0)">菜单管理</a></li>
-                    <li><a _href="sysRole/searchWithConditions" href="javascript:void(0)">角色管理</a></li>
-                    <li><a _href="application/authorization/authorization.jsp" href="javascript:void(0)">授权管理</a></li>
-                </ul>
-            </dd>
-        </dl>
+        <%--<dl id="menu-admin">--%>
+            <%--<dt><i class="Hui-iconfont">&#xe62d;</i> 管理员管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>--%>
+            <%--<dd>--%>
+                <%--<ul>--%>
+                    <%--<li><a _href="sysMenu/searchWithConditions" href="javascript:void(0)">菜单管理</a></li>--%>
+                    <%--<li><a _href="sysRole/searchWithConditions" href="javascript:void(0)">角色管理</a></li>--%>
+                    <%--<li><a _href="application/authorization/authorization.jsp" href="javascript:void(0)">授权管理</a></li>--%>
+                <%--</ul>--%>
+            <%--</dd>--%>
+        <%--</dl>--%>
 <!--        <dl id="menu-tongji">
             <dt><i class="Hui-iconfont">&#xe61a;</i> 系统统计<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
             <dd>
@@ -190,10 +198,10 @@
         </div>
     </div>
 </section>
-<script type="text/javascript" src="lib/jquery/1.9.1/jquery.min.js"></script>
-<script type="text/javascript" src="lib/layer/layer.js"></script>
-<script type="text/javascript" src="js/H-ui.js"></script>
-<script type="text/javascript" src="js/H-ui.admin.js"></script>
+<script type="text/javascript" src="../lib/jquery/1.9.1/jquery.min.js"></script>
+<script type="text/javascript" src="../lib/layer/layer.js"></script>
+<script type="text/javascript" src="../js/H-ui.js"></script>
+<script type="text/javascript" src="../js/H-ui.admin.js"></script>
 <script type="text/javascript">
     /*资讯-添加*/
     function article_add(title, url) {

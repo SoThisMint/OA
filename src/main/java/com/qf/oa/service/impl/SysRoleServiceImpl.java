@@ -1,7 +1,5 @@
 package com.qf.oa.service.impl;
 
-import com.github.pagehelper.Page;
-import com.github.pagehelper.PageInfo;
 import com.qf.oa.common.SysResult;
 import com.qf.oa.dao.IBaseDao;
 import com.qf.oa.entity.SysRole;

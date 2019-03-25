@@ -75,10 +75,10 @@
             var type = $("#type").val();
 
             if(role==-1){
-                layer.msg("请选择角色!",{icon:2,time:2000})
+                layer.msg("请选择角色!",{icon:2,time:2000});
                 return;
             }else if(type==-1){
-                layer.msg("请选择类型!",{icon:2,time:2000})
+                layer.msg("请选择类型!",{icon:2,time:2000});
                 return;
             }
 
@@ -91,7 +91,7 @@
                 $("#authorization").load("authorization/queryAuthMenuByRoleId",{"roleId":role});
             }
         })
-    })
+    });
 
 
     /*给角色授权新用户*/
@@ -101,10 +101,10 @@
         var type = $("#type").val();
 
         if(role==-1){
-            layer.msg("请选择角色!",{icon:2,time:2000})
+            layer.msg("请选择角色!",{icon:2,time:2000});
             return;
         }else if(type==-1){
-            layer.msg("请选择类型!",{icon:2,time:2000})
+            layer.msg("请选择类型!",{icon:2,time:2000});
             return;
         }
 
@@ -146,6 +146,7 @@
         }
     }
 
+    //页面加载完成使用ajax渲染遍历
     $.ajax({
         url:"authorization/roleList",
         type:"POST",
