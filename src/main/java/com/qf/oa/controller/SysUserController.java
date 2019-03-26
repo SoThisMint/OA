@@ -7,6 +7,10 @@ import com.qf.oa.common.SysResult;
 import com.qf.oa.entity.SysMenu;
 import com.qf.oa.entity.SysUser;
 import com.qf.oa.service.ISysUserService;
+import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.authc.AuthenticationException;
+import org.apache.shiro.authc.UsernamePasswordToken;
+import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,7 +19,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import javax.servlet.http.HttpSession;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -82,18 +85,30 @@ public class SysUserController {
     }
 
     @RequestMapping("/checkLogin")
-    public String checkLogin(SysUser sysUser, String online, Model model, HttpSession session) {
-        SysUser currentUser = sysUserService.getUserByUserName(sysUser);
-        System.out.println(online);
-        if (currentUser == null) {
-            return "login";
+    public String checkLogin(SysUser sysUser, String online, Model model) {
+
+        Subject currentUser = SecurityUtils.getSubject();
+
+        if (!currentUser.isAuthenticated()) {
+            //创建一个token对象，传入用户名和密码
+            UsernamePasswordToken token = new UsernamePasswordToken(sysUser.getUserName(), sysUser.getUserPassword());
+            try {
+                currentUser.login(token);
+            } catch (AuthenticationException e) {
+                System.out.println("认证失败");
+                return "login";
+            }
         }
+
         //登录成功
-        List<SysMenu> menuList = sysUserService.getMenuListByUserId(currentUser.getUserId());
-        if (true) {
-            session.setAttribute("currentUser", currentUser);
-        }
+        SysUser user = (SysUser) currentUser.getPrincipal();
+        List<SysMenu> menuList = sysUserService.getMenuListByUserId(user.getUserId());
         model.addAttribute("menuList", menuList);
         return "index";
+    }
+
+    @RequestMapping("login")
+    public String login(){
+        return "login";
     }
 }

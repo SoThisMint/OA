@@ -314,4 +314,9 @@
         select distinct m.* from sys_role_user rs,sys_role_menu rm,sys_menu m where
         rs.ROLE_ID = rm.ROLE_ID and rm.MENU_ID = m.MENU_ID and m.IS_PUBLISH = 1 and rs.USER_ID = #{userId} and m.MENU_PARENT_ID != -1
     </select>
+    <select id="findUserByUserName" parameterType="string" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from sys_user where USER_NAME = #{userName} and FLAG = 1
+    </select>
 </mapper>

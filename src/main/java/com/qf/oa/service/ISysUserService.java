@@ -22,4 +22,6 @@ public interface ISysUserService extends IBaseService<SysUser> {
     SysUser getUserByUserName(SysUser sysUser);
 
     List<SysMenu> getMenuListByUserId(Long userId);
+
+    SysUser findUserByUserName(String username);
 }

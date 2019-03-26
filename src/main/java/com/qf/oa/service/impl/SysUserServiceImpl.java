@@ -3,7 +3,6 @@ package com.qf.oa.service.impl;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.qf.oa.common.Page;
-import com.qf.oa.common.SysResult;
 import com.qf.oa.dao.IBaseDao;
 import com.qf.oa.entity.SysMenu;
 import com.qf.oa.entity.SysUser;
@@ -62,5 +61,10 @@ public class SysUserServiceImpl extends BaseServiceImpl<SysUser> implements ISys
     @Override
     public List<SysMenu> getMenuListByUserId(Long userId) {
         return sysUserMapper.getMenuListByUserId(userId);
+    }
+
+    @Override
+    public SysUser findUserByUserName(String username) {
+        return sysUserMapper.findUserByUserName(username);
     }
 }

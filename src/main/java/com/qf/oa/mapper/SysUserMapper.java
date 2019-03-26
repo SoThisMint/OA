@@ -17,4 +17,6 @@ public interface SysUserMapper extends IBaseDao<SysUser> {
 
     //通过用户id查询菜单列表
     List<SysMenu> getMenuListByUserId(Long userId);
+
+    SysUser findUserByUserName(String username);
 }

@@ -44,7 +44,7 @@
             <ul class="dropDown-menu radius box-shadow">
                 <li><a href="#">个人信息</a></li>
                 <li><a href="#">切换账户</a></li>
-                <li><a href="#">退出</a></li>
+                <li><a href="/sysUser/logout">退出</a></li>
             </ul>
         </li>
         <li id="Hui-msg"><a href="#" title="消息"><span class="badge badge-danger">1</span><i class="Hui-iconfont"
