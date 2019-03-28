@@ -10,7 +10,7 @@
 	http://www.springframework.org/schema/mvc
 	http://www.springframework.org/schema/mvc/spring-mvc.xsd http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd">
 
-    <aop:config proxy-target-class="true"></aop:config>
+    <aop:config proxy-target-class="true" />
     <bean class="org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor">
         <property name="securityManager" ref="securityManager" />
     </bean>
@@ -36,6 +36,15 @@
         <property name="prefix" value="/application/" />
         <!-- 渲染后视图的后缀 -->
         <property name="suffix" value=".jsp" />
+    </bean>
+
+    <!-- 文件上传配置 -->
+    <bean id="multipartResolver"
+          class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+        <!-- 设置编码格式 -->
+        <property name="defaultEncoding" value="utf-8" />
+        <!-- 设置上传文件总大小，单位字节 -->
+        <property name="maxUploadSize" value="20971520" />
     </bean>
 
     <!-- 配置静态资源 -->

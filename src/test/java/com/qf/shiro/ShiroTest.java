@@ -17,10 +17,10 @@ public class ShiroTest {
         String algorithmName = "MD5";
 
         //2.密码
-        Object source = "mike";
+        Object source = "ww";
 
         //3.盐值(一般是用户名或用户id)
-        Object salt = ByteSource.Util.bytes("mike");
+        Object salt = ByteSource.Util.bytes("ww");
 
         //4.加密次数
         int hashIteratorations = 1024;

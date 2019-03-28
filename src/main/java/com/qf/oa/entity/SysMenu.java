@@ -92,4 +92,19 @@ public class SysMenu {
     public void setUpdateTime(Date updateTime) {
         this.updateTime = updateTime;
     }
+
+    @Override
+    public String toString() {
+        return "SysMenu{" +
+                "menuId=" + menuId +
+                ", menuParentId=" + menuParentId +
+                ", menuName='" + menuName + '\'' +
+                ", menuType=" + menuType +
+                ", menuPath='" + menuPath + '\'' +
+                ", menuDesc='" + menuDesc + '\'' +
+                ", isPublish=" + isPublish +
+                ", createTime=" + createTime +
+                ", updateTime=" + updateTime +
+                '}';
+    }
 }

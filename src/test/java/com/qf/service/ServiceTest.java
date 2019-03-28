@@ -1,8 +1,10 @@
 package com.qf.service;
 
 import com.github.pagehelper.PageInfo;
+import com.qf.oa.entity.SysMenu;
 import com.qf.oa.entity.SysOrg;
 import com.qf.oa.service.ISysOrgService;
+import com.qf.oa.service.ISysUserService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +12,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import java.util.Date;
+import java.util.List;
 import java.util.UUID;
 
 /**
@@ -25,6 +28,9 @@ public class ServiceTest {
 
     @Autowired
     private ISysOrgService sysOrgService;
+
+    @Autowired
+    private ISysUserService sysUserService;
 
     @Test
     public void selectByPrimaryKeyTest() {
@@ -73,6 +79,14 @@ public class ServiceTest {
     public void getPage() {
         PageInfo page = sysOrgService.getPage(1, 5);
         System.out.println(page);
+    }
+
+    @Test
+    public void testGetMenuList(){
+        List<SysMenu> menuList = sysUserService.getMenuListByUserId(3L);
+        for(SysMenu sysMenu:menuList){
+            System.out.println(sysMenu);
+        }
     }
 
 }
